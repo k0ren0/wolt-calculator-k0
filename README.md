@@ -1,4 +1,4 @@
-# Wolt Calculator v2
+# Wolt Calculator v8 
 
 Что внутри:
 - мобильный калькулятор;
@@ -18,5 +18,5 @@
 6. Save.
 
 После выхода конкретного видео замени в `index.html` ссылку
-https://www.youtube.com/@vik-israel
+https://www.youtube.com/@vikisrael
 в блоке «Перейти к видео / каналу» на прямую ссылку на ролик.
