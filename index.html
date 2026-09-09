@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#00c2e8">
+<meta name="description" content="Калькулятор примерной разовой выплаты Wolt для курьеров в Израиле по опубликованной прогрессивной шкале.">
+<title>Калькулятор выплаты Wolt — Vik-Israel</title>
+<style>
+:root{--bg:#0f1720;--card:#16212b;--card2:#101a23;--text:#f6f8fa;--muted:#9fb0bf;--border:#2a3a47;--accent:#00c2e8;--warn:#ffcc66;--danger:#ff7b7b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0e1720,#111b24);color:var(--text);line-height:1.5;min-height:100vh}
+.wrap{width:min(1000px,calc(100% - 28px));margin:auto;padding:24px 0 44px}.hero,.grid{display:grid;gap:18px}.hero{grid-template-columns:1.25fr .75fr;margin-bottom:18px}.grid{grid-template-columns:.9fr 1.1fr}
+.card,.hero>div,.hero>aside,.note,.howto,.faq{border:1px solid var(--border);background:var(--card);border-radius:22px;padding:22px}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.02;margin:14px 0 10px;letter-spacing:-.04em}h2{margin:0 0 14px;font-size:24px}h3{margin:0 0 8px;font-size:18px}
+.eyebrow{display:inline-block;padding:7px 11px;border-radius:999px;background:rgba(0,194,232,.12);color:#77e6fb;font-weight:800;font-size:13px}.lead,.muted{color:var(--muted)}
+.brand{font-size:20px;font-weight:900}.brand span{color:var(--accent)}.side{display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+a.btn,button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:14px;padding:0 16px;font-weight:800;text-decoration:none;cursor:pointer;border:1px solid var(--border)}
+a.btn{background:var(--accent);color:#06222a;border:none}a.btn.secondary{background:#24323e;color:var(--text);border:1px solid var(--border)}
+label{display:block;font-size:14px;font-weight:800;margin-bottom:8px}input{width:100%;min-height:56px;border-radius:15px;border:1px solid var(--border);background:#0f1820;color:var(--text);padding:0 16px;font-size:20px;outline:none}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,194,232,.15)}
+.result{margin-top:18px;background:rgba(0,194,232,.10);border:1px solid rgba(0,194,232,.28);border-radius:18px;padding:20px}.result-value{font-size:clamp(40px,8vw,64px);font-weight:900;line-height:1;margin:7px 0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.stat{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:12px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:17px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button{background:#24323e;color:var(--text)}.error{color:var(--danger);font-size:13px;min-height:20px;margin-top:8px}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:15px}table{width:100%;min-width:560px;border-collapse:collapse}th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;font-size:14px}th:first-child,td:first-child{text-align:left}th{color:var(--muted);background:#121d26;font-size:12px;text-transform:uppercase}.highlight td{background:rgba(0,194,232,.08)}
+.note,.howto,.faq{margin-top:18px}.note p{margin:0;color:var(--muted);font-size:14px}.note strong{color:var(--warn)}
+.how-grid{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}.steps{margin:0;padding-left:22px}.steps li{margin:0 0 12px}.shot{width:100%;border-radius:16px;border:1px solid var(--border);display:block}.caption{font-size:12px;color:var(--muted);margin-top:8px}
+.source-grid{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:center;margin-top:18px}.source-grid img{width:100%;border-radius:16px;border:1px solid var(--border)}.badge{display:inline-block;padding:5px 9px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px;margin-bottom:8px}
+.faq details{border-top:1px solid var(--border);padding:13px 0}.faq details:first-of-type{border-top:0}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted);margin:8px 0 0}
+.video-box{margin-top:18px;border:1px solid rgba(0,194,232,.28);background:rgba(0,194,232,.08);border-radius:18px;padding:18px;display:flex;justify-content:space-between;gap:16px;align-items:center}.video-box p{margin:4px 0 0;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:22px 0 0}
+@media(max-width:760px){.hero,.grid,.how-grid,.source-grid{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1000px);padding-top:14px}.stats{grid-template-columns:1fr}.video-box{align-items:stretch;flex-direction:column}.hero>div,.hero>aside,.card,.note,.howto,.faq{padding:18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<section class="hero">
+<div>
+<div class="eyebrow">Wolt Israel • калькулятор курьера</div>
+<h1>Сколько вам могут выплатить?</h1>
+<p class="lead">Введите количество доставок, которое Wolt подтвердит для расчёта, и получите примерную разовую выплату по опубликованной прогрессивной шкале.</p>
+</div>
+<aside class="side">
+<div><div class="brand">Vik<span>-Israel</span></div><p class="muted">Практический инструмент для зрителей видео о работе курьером в Израиле.</p></div>
+<a class="btn" href="https://www.youtube.com/@vik-israel" target="_blank" rel="noopener">Мой YouTube-канал</a>
+</aside>
+</section>
+
+<section class="grid">
+<div class="card">
+<label for="deliveries">Количество выполненных доставок</label>
+<input id="deliveries" type="number" min="0" step="1" inputmode="numeric" value="9731" placeholder="Например, 9731">
+<div id="error" class="error" aria-live="polite"></div>
+
+<div class="result" aria-live="polite">
+<div class="muted">Предполагаемая разовая выплата</div>
+<div id="total" class="result-value">1 640,20 ₪</div>
+<div id="avg" class="muted">≈ 0,169 ₪ в среднем за доставку</div>
+</div>
+
+<div class="stats">
+<div class="stat"><small>Доставок сверх 7 000</small><strong id="extra">2 731</strong></div>
+<div class="stat"><small>За них по 0,20 ₪</small><strong id="extraSum">546,20 ₪</strong></div>
+</div>
+
+<div class="actions">
+<button id="copy" type="button">Скопировать результат</button>
+<button id="reset" type="button">Сбросить</button>
+</div>
+</div>
+
+<div class="card">
+<h2>Как считается сумма</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Диапазон</th><th>Учтено</th><th>Ставка</th><th>Сумма</th></tr></thead>
+<tbody id="breakdown"></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="howto">
+<h2>Как узнать своё количество доставок</h2>
+<div class="how-grid">
+<div>
+<ol class="steps">
+<li>Откройте информационную страницу Wolt по соглашению.</li>
+<li>Найдите блок <strong>«כמה משלוחים ביצעתם?»</strong> — «Сколько доставок вы выполнили?».</li>
+<li>Нажмите кнопку <strong>«המשלוחים שלי»</strong> — «Мои доставки».</li>
+<li>Запросите данные и используйте число, которое Wolt подтвердит вам, в калькуляторе выше.</li>
+</ol>
+<p class="muted">Если число в приложении и число, которое Wolt пришлёт для соглашения, отличаются, для предварительного расчёта лучше использовать именно подтверждённое Wolt количество.</p>
+</div>
+<div>
+<img class="shot" src="assets/how-to-find-deliveries.jpeg" alt="Кнопка «Мои доставки» на информационной странице Wolt">
+<div class="caption">На странице ищите кнопку «המשלוחים שלי».</div>
+</div>
+</div>
+</section>
+
+<section class="card source-grid">
+<img src="assets/wolt-payment-table.png" alt="Опубликованная таблица расчёта выплаты Wolt">
+<div>
+<div class="badge">Исходная шкала</div>
+<h2>Почему калькулятор считает именно так</h2>
+<p class="muted">В опубликованной таблице используется ступенчатый расчёт: каждая часть общего количества доставок оплачивается по своей ставке. Поэтому, например, при 9 731 доставке не все 9 731 умножаются на 0,20 ₪ — ставка 0,20 ₪ применяется только к доставкам сверх 7 000.</p>
+</div>
+</section>
+
+<section class="video-box">
+<div>
+<strong>Хотите понять, что ещё меняется для курьеров?</strong>
+<p>В видео я разбираю разовую выплату, будущие гарантии, минимальную оплату, пенсионные накопления и другие детали.</p>
+</div>
+<a class="btn secondary" href="https://www.youtube.com/@vik-israel" target="_blank" rel="noopener">Перейти к видео / каналу</a>
+</section>
+
+<section class="faq">
+<h2>Коротко о важном</h2>
+<details open>
+<summary>Это официальный калькулятор Wolt?</summary>
+<p>Нет. Это независимый информационный калькулятор для курьеров, сделанный по опубликованной шкале.</p>
+</details>
+<details>
+<summary>Сумма уже гарантирована?</summary>
+<p>Нет. Итоговые выплаты зависят от окончательного утверждения соглашения и правил его исполнения.</p>
+</details>
+<details>
+<summary>Почему после 7 000 доставок ставка 0,20 ₪?</summary>
+<p>По опубликованной таблице это верхняя ступень расчёта. Она применяется к каждой доставке начиная с 7 001-й.</p>
+</details>
+<details>
+<summary>Что делать, если я не знаю количество доставок?</summary>
+<p>Запросить его через кнопку «המשלוחים שלי» на информационной странице Wolt и затем ввести полученное число в калькулятор.</p>
+</details>
+</section>
+
+<section class="note">
+<p><strong>Важно:</strong> расчёт предварительный. Сайт не связан с Wolt и не является юридической или финансовой консультацией. Перед фактической выплатой ориентируйтесь на официальные сообщения Wolt и решение суда.</p>
+</section>
+
+<footer>Vik-Israel • калькулятор для курьеров Wolt в Израиле</footer>
+</main>
+
+<script>
+const tiers=[
+{start:1,end:50,rate:.05},{start:51,end:250,rate:.07},{start:251,end:500,rate:.09},
+{start:501,end:1000,rate:.11},{start:1001,end:2000,rate:.15},{start:2001,end:7000,rate:.17},
+{start:7001,end:Infinity,rate:.20}
+];
+const $=id=>document.getElementById(id);
+const fmtMoney=new Intl.NumberFormat('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtInt=new Intl.NumberFormat('ru-RU');
+const fmtAvg=new Intl.NumberFormat('ru-RU',{minimumFractionDigits:3,maximumFractionDigits:3});
+
+function calc(n){
+ let total=0,rows=[];
+ for(const t of tiers){
+   const upper=t.end===Infinity?n:Math.min(n,t.end);
+   const count=Math.max(0,upper-t.start+1);
+   const sum=count*t.rate;
+   total+=sum; rows.push({...t,count,sum});
+ }
+ return {total,rows};
+}
+function draw(n){
+ const r=calc(n);
+ $('total').textContent=fmtMoney.format(r.total)+' ₪';
+ $('avg').textContent=n>0?'≈ '+fmtAvg.format(r.total/n)+' ₪ в среднем за доставку':'Введите количество доставок';
+ const extra=Math.max(0,n-7000);
+ $('extra').textContent=fmtInt.format(extra);
+ $('extraSum').textContent=fmtMoney.format(extra*.20)+' ₪';
+ $('breakdown').innerHTML='';
+ for(const row of r.rows){
+   if(row.count<=0) continue;
+   const tr=document.createElement('tr');
+   if(row.start===7001) tr.className='highlight';
+   const range=row.end===Infinity?'7 001+':fmtInt.format(row.start)+'–'+fmtInt.format(row.end);
+   tr.innerHTML=`<td>${range}</td><td>${fmtInt.format(row.count)}</td><td>${row.rate.toFixed(2).replace('.',',')} ₪</td><td><strong>${fmtMoney.format(row.sum)} ₪</strong></td>`;
+   $('breakdown').appendChild(tr);
+ }
+}
+function render(){
+ const raw=$('deliveries').value.trim();
+ if(raw===''){ $('error').textContent=''; draw(0); return; }
+ let n=Number(raw);
+ if(!Number.isFinite(n)||n<0){ $('error').textContent='Введите число от 0 и выше.'; draw(0); return; }
+ n=Math.floor(Math.min(n,100000000));
+ $('error').textContent='';
+ draw(n);
+}
+$('deliveries').addEventListener('input',render);
+$('reset').addEventListener('click',()=>{$('deliveries').value='';render();$('deliveries').focus();});
+$('copy').addEventListener('click',async()=>{
+ const n=Math.max(0,Math.floor(Number($('deliveries').value)||0));
+ const r=calc(n);
+ const text=`Wolt: ${fmtInt.format(n)} доставок → примерно ${fmtMoney.format(r.total)} ₪`;
+ try{
+   await navigator.clipboard.writeText(text);
+   $('copy').textContent='Скопировано';
+   setTimeout(()=>$('copy').textContent='Скопировать результат',1400);
+ }catch(e){
+   $('copy').textContent='Скопируйте вручную';
+   setTimeout(()=>$('copy').textContent='Скопировать результат',1600);
+ }
+});
+render();
+</script>
+</body>
+</html>
