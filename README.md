@@ -1,4 +1,4 @@
-# Wolt Calculator v3
+# Wolt Calculator v9
 
 Официальная страница соглашения:
 https://www.couriersclub.com/settlement
